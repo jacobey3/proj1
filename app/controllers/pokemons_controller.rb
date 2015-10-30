@@ -7,7 +7,7 @@ class PokemonsController < ApplicationController
 	def create
 		@pokemon = Pokemon.create(pokemon_params)
 		@pokemon.update_attributes(health: 100, level: 1, trainer_id: current_trainer.id)
-		current_trainer.update_attributes(pokemon_id: current_trainer.id)
+		current_trainer.update_attributes(pokemon_id: @pokemon.id)
 		if @pokemon.save
 			redirect_to current_trainer
 		else
